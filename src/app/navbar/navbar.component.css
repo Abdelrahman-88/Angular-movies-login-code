@@ -1,0 +1,42 @@
+.navbar{
+    transition: background-color .5s , padding .5s;
+}
+
+.dropdown-menu{
+    background-color: #131722d3;
+}
+
+.dropdown-item:focus, .dropdown-item:hover{
+    background-color: rgba(255, 255, 255, 0.452);;
+}
+
+.logo{
+    width: 40px;
+}
+
+.active{
+    background-color: rgba(255, 255, 255, 0.452);
+    color: #131722 !important;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.nav-link{
+    font-weight: 700;
+    border-radius: 4px;
+    transition: background-color .5s , color .5s;
+}
+
+.nav-link:hover{
+    background-color: rgba(255, 255, 255, 0.452);
+    color: #131722 !important;
+    font-weight: 700;
+}
+
+.fa-user{
+    transition: color .5s;
+}
+
+.fa-user:hover{
+    color: #007bb5;
+}

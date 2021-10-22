@@ -1,0 +1,14 @@
+<div class="container pt-5">
+    <div class="row pt-5">
+        <div *ngFor="let movie of trendingMovies" class="col-md-2">
+            <div class="movies position-relative">
+                <a [routerLink]="['/moviedetails',movie.id,movie.media_type]"><img class="img-fluid"
+                        [src]="imgPrefx+movie.poster_path" [alt]="movie.title"></a>
+                <h2 class="h6 my-3">{{movie.title}}</h2>
+                <div class="vote text-white fw-bolder position-absolute top-0 end-0 p-2">
+                    {{movie.vote_average}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

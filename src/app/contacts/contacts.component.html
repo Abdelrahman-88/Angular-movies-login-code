@@ -1,0 +1,64 @@
+<div class="w-75 mx-auto py-5">
+  <div class="py-5">
+    <h2 class="my-4">Contact US</h2>
+
+    <form [formGroup]="contactForm" (ngSubmit)="submitContactForm(contactForm)">
+        <div class="my-3">
+            <label for="first_name">FirstName :</label>
+            <input type="text" formControlName="first_name" id="first_name" name="" class="form-control">
+            <div *ngIf="contactForm.get('first_name')?.errors!=null && contactForm.get('first_name')?.touched"
+                class="alert alert-danger mt-2 fw-bolder">
+                <p *ngIf="contactForm.get('first_name')?.errors?.required">first_name is required</p>
+                <p *ngIf="contactForm.get('first_name')?.errors?.minlength">first_name minlength is 3</p>
+                <p *ngIf="contactForm.get('first_name')?.errors?.maxlength">first_name maxlength is 8</p>
+            </div>
+        </div>
+
+        <div class="my-3">
+            <label for="last_name">LastName :</label>
+            <input type="text" formControlName="last_name" id="last_name" name="" class="form-control">
+            <div *ngIf="contactForm.get('last_name')?.errors!=null && contactForm.get('last_name')?.touched"
+                class="alert alert-danger mt-2 fw-bolder">
+                <p *ngIf="contactForm.get('last_name')?.errors?.required">last_name is required</p>
+                <p *ngIf="contactForm.get('last_name')?.errors?.minlength">last_name minlength is 3</p>
+                <p *ngIf="contactForm.get('last_name')?.errors?.maxlength">last_name maxlength is 8</p>
+            </div>
+        </div>
+
+        <div class="my-3">
+            <label for="age">Age :</label>
+            <input type="number" formControlName="age" id="age" name="" class="form-control">
+            <div *ngIf="contactForm.get('age')?.errors!=null && contactForm.get('age')?.touched"
+                class="alert alert-danger mt-2 fw-bolder">
+                <p *ngIf="contactForm.get('age')?.errors?.required">age is required</p>
+                <p *ngIf="contactForm.get('age')?.errors?.min">age min is 16</p>
+                <p *ngIf="contactForm.get('age')?.errors?.max">age max is 80</p>
+            </div>
+        </div>
+
+        <div class="my-3">
+            <label for="email">Email :</label>
+            <input type="email" formControlName="email" id="email" name="" class="form-control">
+            <div *ngIf="contactForm.get('email')?.errors!=null && contactForm.get('email')?.touched"
+                class="alert alert-danger mt-2 fw-bolder">
+                <p *ngIf="contactForm.get('email')?.errors?.required">email is required</p>
+                <p *ngIf="contactForm.get('email')?.errors?.email">invalid email</p>
+            </div>
+        </div>
+
+        <div class="my-3">
+            <label for="comment">Comment :</label>
+            <textarea type="text" formControlName="comment" id="comment" name="" class="form-control" cols="30"
+                rows="5"></textarea>
+            <div *ngIf="contactForm.get('comment')?.errors!=null && contactForm.get('comment')?.touched"
+                class="alert alert-danger mt-2 fw-bolder">
+                <p *ngIf="contactForm.get('comment')?.errors?.required">comment is required</p>
+                <p *ngIf="contactForm.get('comment')?.errors?.minlength">comment minlength is 10</p>
+                <p *ngIf="contactForm.get('comment')?.errors?.maxlength">comment maxlength is 100</p>
+            </div>
+        </div>
+        <p *ngIf="valid" class="alert alert-success mt-2 fw-bolder">Success</p>
+        <button [disabled]="contactForm.invalid" type="submit" class="btn btn-info mt-2 text-white">Send</button>
+    </form>
+  </div>
+</div>
