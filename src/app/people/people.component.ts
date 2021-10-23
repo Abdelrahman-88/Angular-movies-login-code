@@ -7,6 +7,7 @@ import { MoviesService } from './../movies.service';
   styleUrls: ['./people.component.css']
 })
 export class PeopleComponent implements OnInit {
+  terms:string="";
   trendingPeople:any[]=[];
   imgPrefx:string = "https://image.tmdb.org/t/p/w500";
 

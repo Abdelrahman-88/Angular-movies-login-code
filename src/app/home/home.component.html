@@ -1,7 +1,13 @@
 <app-header [headerTrendingMovies]="trendingMovies"></app-header>
 <div class="container">
+    <div class="w-75 m-auto pt-5">
+        <div class="form-floating my-5">
+            <input [(ngModel)]="terms" type="text" class="form-control bg-transparent text-white" id="floatingInput" placeholder="Search">
+            <label for="floatingInput">Search</label>
+        </div>
+    </div>
     <div class="row pt-5">
-
+        
         <div class="col-md-4 d-flex align-items-center">
             <div>
                 <div class="border1"></div>
@@ -16,7 +22,15 @@
                 <div class="border2"></div>
             </div>
         </div>
-        <div *ngFor="let movie of trendingMovies" class="col-md-2">
+
+        <div class="col-md-8 d-flex align-items-center justify-content-center my-5" *ngIf="(trendingMovies|search:terms).length==0">
+            <h2>
+                NO Match
+            </h2>
+        </div>
+        
+        
+        <div *ngFor="let movie of trendingMovies|search:terms" class="col-md-2">
             <div class="movies position-relative">
                 <a [routerLink]="['/moviedetails',movie.id,movie.media_type]"><img class="img-fluid"
                         [src]="imgPrefx+movie.poster_path" [alt]="movie.title"></a>
@@ -44,7 +58,14 @@
                 <div class="border2"></div>
             </div>
         </div>
-        <div *ngFor="let people of trendingPeople" class="col-md-2">
+
+        <div class="col-md-8 d-flex align-items-center justify-content-center my-5" *ngIf="(trendingPeople|search:terms).length==0">
+            <h2>
+                NO Match
+            </h2>
+        </div>
+
+        <div *ngFor="let people of trendingPeople|search:terms" class="col-md-2">
             <div class="movies position-relative">
                 <a [routerLink]="['/moviedetails',people.id,people.media_type]"><img class="img-fluid"
                         [src]="imgPrefx+people.poster_path" [alt]="people.title"></a>
@@ -72,7 +93,14 @@
                 <div class="border2"></div>
             </div>
         </div>
-        <div *ngFor="let tv of trendingTv" class="col-md-2">
+
+        <div class="col-md-8 d-flex align-items-center justify-content-center my-5" *ngIf="(trendingTv|search:terms).length==0">
+            <h2>
+                NO Match
+            </h2>
+        </div>
+
+        <div *ngFor="let tv of trendingTv|search:terms" class="col-md-2">
             <div class="movies position-relative">
                 <a [routerLink]="['/moviedetails',tv.id,tv.media_type]"><img class="img-fluid"
                         [src]="imgPrefx+tv.poster_path" [alt]="tv.title"></a>

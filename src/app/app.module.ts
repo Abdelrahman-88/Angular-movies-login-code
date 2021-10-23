@@ -21,6 +21,7 @@ import { TvComponent } from './tv/tv.component';
 import { PeopleComponent } from './people/people.component';
 import { LoadingComponent } from './loading/loading.component';
 import { FooterComponent } from './footer/footer.component';
+import { SearchPipe } from './search.pipe';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { FooterComponent } from './footer/footer.component';
     PeopleComponent,
     LoadingComponent,
     FooterComponent,
+    SearchPipe,
     
   ],
   imports: [

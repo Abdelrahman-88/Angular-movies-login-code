@@ -2,62 +2,72 @@
     <div class="container">
         <a class="me-3" routerLink="home"><img class="logo" src="assets/img/filmbox1.png" alt="box"></a>
 
-        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
             <i class="fas fa-bars text-white"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a routerLinkActive="active" class="nav-link m-1 ps-2" aria-current="page" *ngIf="this.isLogin" routerLink="home">Home</a>
+                    <a routerLinkActive="active" class="nav-link m-1 ps-2" aria-current="page" *ngIf="this.isLogin"
+                        routerLink="home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLinkActive="active" class="nav-link m-1 ps-2" *ngIf="this.isLogin" routerLink="movies">Movies</a>
+                    <a routerLinkActive="active" class="nav-link m-1 ps-2" *ngIf="this.isLogin"
+                        routerLink="movies">Movies</a>
                 </li>
                 <li class="nav-item">
                     <a routerLinkActive="active" class="nav-link m-1 ps-2" *ngIf="this.isLogin" routerLink="tv">Tv</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLinkActive="active" class="nav-link m-1 ps-2" *ngIf="this.isLogin" routerLink="people">People</a>
+                    <a routerLinkActive="active" class="nav-link m-1 ps-2" *ngIf="this.isLogin"
+                        routerLink="people">People</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLinkActive="active" class="nav-link m-1 ps-2" *ngIf="this.isLogin" routerLink="about">About Us</a>
+                    <a routerLinkActive="active" class="nav-link m-1 ps-2" *ngIf="this.isLogin" routerLink="about">About
+                        Us</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLinkActive="active" class="nav-link m-1 ps-2" *ngIf="this.isLogin" routerLink="contacts">Contacts</a>
-                </li>              
+                    <a routerLinkActive="active" class="nav-link m-1 ps-2" *ngIf="this.isLogin"
+                        routerLink="contacts">Contacts</a>
+                </li>
             </ul>
             <div class="d-flex m-2">
-                <input (keyup)="searchEnter($event)" [(ngModel)]="term" class="form-control me-2 search" type="search" placeholder="Search" aria-label="Search">
+                <input (keyup)="searchEnter($event)" [(ngModel)]="term"
+                    class="form-control me-2 bg-transparent search text-white fw-bolder" type="search"
+                    placeholder="Search" aria-label="Search">
                 <button (click)="search()" class="btn btn-outline-success" type="submit">Search</button>
             </div>
-        <div class="d-flex">
-            <div class="d-flex me-3">
-                <a class="m-2" aria-current="page" href="#"><i class="fab fa-twitter"></i></a>
-                <a class="m-2" aria-current="page" href="#"><i class="fab fa-instagram"></i></a>
-                <a class="m-2" aria-current="page" href="#"><i class="fab fa-facebook-f"></i></a>
-                <a class="m-2" aria-current="page" href="#"><i class="fab fa-youtube"></i></a>
-            </div>
             <div class="d-flex">
-                <div class="dropdown">
-
-                    <a class="dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
-                        aria-expanded="false" *ngIf="this.isLogin" class="m-2"><i class="fas fa-user"></i></a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <li><a class="dropdown-item text-white fw-bolder" type="button"
-                                routerLink="profile/user">User</a></li>
-                        <li><a class="dropdown-item text-white fw-bolder" type="button"
-                                routerLink="profile/rules">Rules</a></li>
-
-                    </ul>
+                <div class="d-flex me-3">
+                    <a class="m-2" aria-current="page" href="#"><i class="fab fa-twitter"></i></a>
+                    <a class="m-2" aria-current="page" href="#"><i class="fab fa-instagram"></i></a>
+                    <a class="m-2" aria-current="page" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="m-2" aria-current="page" href="#"><i class="fab fa-youtube"></i></a>
                 </div>
+                <div class="d-flex">
+                    <div class="dropdown">
 
-                <a routerLinkActive="active" *ngIf="!this.isLogin" class="nav-link mx-1" routerLink="login">Login</a>
-                <a routerLinkActive="active" *ngIf="!this.isLogin" class="nav-link mx-1" routerLink="register">Register</a>
-                <a (click)="logOut()" *ngIf="this.isLogin" class="nav-link mx-1" routerLink="#">Logout</a>
+                        <a class="dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
+                            aria-expanded="false" *ngIf="this.isLogin" class="m-2"><i class="fas fa-user"></i></a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <li><a class="dropdown-item text-white fw-bolder" type="button"
+                                    routerLink="profile/user">User</a></li>
+                            <li><a class="dropdown-item text-white fw-bolder" type="button"
+                                    routerLink="profile/rules">Rules</a></li>
+
+                        </ul>
+                    </div>
+
+                    <a routerLinkActive="active" *ngIf="!this.isLogin" class="nav-link mx-1"
+                        routerLink="login">Login</a>
+                    <a routerLinkActive="active" *ngIf="!this.isLogin" class="nav-link mx-1"
+                        routerLink="register">Register</a>
+                    <a (click)="logOut()" *ngIf="this.isLogin" class="nav-link mx-1" routerLink="#">Logout</a>
+                </div>
             </div>
-        </div>
-            
+
         </div>
     </div>
 </nav>
