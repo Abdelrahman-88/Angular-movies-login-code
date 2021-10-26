@@ -19,7 +19,12 @@ export class AuthService {
 
   saveUserData(){
     let codedUserData = JSON.stringify(localStorage.getItem("userToken"));
-    this.userData.next(jwtDecode(codedUserData));
+    try {
+      this.userData.next(jwtDecode(codedUserData));
+    } catch (error) {
+      localStorage.removeItem("userToken");
+      this._Router.navigate(["/login"]);
+    }
   }
 
   register(formData:object):Observable<any>
@@ -32,10 +37,9 @@ export class AuthService {
     return this._HttpClient.post(`https://route-egypt-api.herokuapp.com/signin`,formData)
   }
 
-  logOut(){
-    localStorage.removeItem("userToken");
+  logOut(token:object):Observable<any>{
     this.userData.next(null);
-    this._Router.navigate(["/login"]);
+    return this._HttpClient.post("https://route-egypt-api.herokuapp.com/signout",token);
   }
 }
 

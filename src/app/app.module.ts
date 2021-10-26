@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,10 +19,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { TvComponent } from './tv/tv.component';
 import { PeopleComponent } from './people/people.component';
-import { LoadingComponent } from './loading/loading.component';
 import { FooterComponent } from './footer/footer.component';
 import { SearchPipe } from './search.pipe';
-
+import { CommonModule } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,6 @@ import { SearchPipe } from './search.pipe';
     HeaderComponent,
     TvComponent,
     PeopleComponent,
-    LoadingComponent,
     FooterComponent,
     SearchPipe,
     
@@ -51,8 +51,12 @@ import { SearchPipe } from './search.pipe';
     HttpClientModule,
     BrowserAnimationsModule,
     CarouselModule,
-    FormsModule
+    FormsModule,
+    CommonModule,
+    ToastrModule.forRoot(),
+    NgxSpinnerModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })

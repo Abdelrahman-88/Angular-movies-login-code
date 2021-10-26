@@ -1,46 +1,47 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-clip-rotate-multiple" [fullScreen] = "true"></ngx-spinner>
 <div class="w-75 mx-auto py-5">
     <div class="py-5">
         <h2 class="my-4">Register Now</h2>
-
-        <p *ngIf="error" class="alert alert-danger my-2 fw-bolder">{{error}}</p>
-
         <form [formGroup]="registerForm" (ngSubmit)="submitRegisterForm(registerForm)">
             <div class="my-3">
                 <label for="first_name">FirstName :</label>
-                <input type="text" formControlName="first_name" id="first_name" name="" class="form-control">
+                <input [ngClass]="{'is-valid': registerForm.get('first_name')?.errors==null}" type="text" formControlName="first_name" id="first_name" name="" class="form-control">
                 <div *ngIf="registerForm.get('first_name')?.errors!=null && registerForm.get('first_name')?.touched"
                     class="alert alert-danger mt-2 fw-bolder">
                     <p *ngIf="registerForm.get('first_name')?.errors?.required">First name is required</p>
                     <p *ngIf="registerForm.get('first_name')?.errors?.minlength">First name minlength is 3</p>
                     <p *ngIf="registerForm.get('first_name')?.errors?.maxlength">First name maxlength is 8</p>
+                    <p *ngIf="registerForm.get('first_name')?.errors?.pattern">Letters only available</p>
                 </div>
             </div>
 
             <div class="my-3">
                 <label for="last_name">LastName :</label>
-                <input type="text" formControlName="last_name" id="last_name" name="" class="form-control">
+                <input [ngClass]="{'is-valid': registerForm.get('last_name')?.errors==null}" type="text" formControlName="last_name" id="last_name" name="" class="form-control">
                 <div *ngIf="registerForm.get('last_name')?.errors!=null && registerForm.get('last_name')?.touched"
                     class="alert alert-danger mt-2 fw-bolder">
                     <p *ngIf="registerForm.get('last_name')?.errors?.required">Last name is required</p>
                     <p *ngIf="registerForm.get('last_name')?.errors?.minlength">Last name minlength is 3</p>
                     <p *ngIf="registerForm.get('last_name')?.errors?.maxlength">Last name maxlength is 8</p>
+                    <p *ngIf="registerForm.get('last_name')?.errors?.pattern">Letters only available</p>
                 </div>
             </div>
 
             <div class="my-3">
                 <label for="age">Age :</label>
-                <input type="number" formControlName="age" id="age" name="" class="form-control">
+                <input [ngClass]="{'is-valid': registerForm.get('age')?.errors==null}" type="number" formControlName="age" id="age" name="" class="form-control">
                 <div *ngIf="registerForm.get('age')?.errors!=null && registerForm.get('age')?.touched"
                     class="alert alert-danger mt-2 fw-bolder">
                     <p *ngIf="registerForm.get('age')?.errors?.required">age is required</p>
                     <p *ngIf="registerForm.get('age')?.errors?.min">Age min is 16</p>
                     <p *ngIf="registerForm.get('age')?.errors?.max">Age max is 80</p>
+                    <p *ngIf="registerForm.get('age')?.errors?.pattern">Digits only available</p>
                 </div>
             </div>
 
             <div class="my-3">
                 <label for="email">Email :</label>
-                <input type="email" formControlName="email" id="email" name="" class="form-control">
+                <input [ngClass]="{'is-valid': registerForm.get('email')?.errors==null}" type="email" formControlName="email" id="email" name="" class="form-control">
                 <div *ngIf="registerForm.get('email')?.errors!=null && registerForm.get('email')?.touched"
                     class="alert alert-danger mt-2 fw-bolder">
                     <p *ngIf="registerForm.get('email')?.errors?.required">Email is required</p>
@@ -51,7 +52,7 @@
 
             <div class="my-3">
                 <label for="password">Password :</label>
-                <input type="password" formControlName="password" id="password" name="" class="form-control">
+                <input [ngClass]="{'is-valid': registerForm.get('password')?.errors==null}" type="password" formControlName="password" id="password" name="" class="form-control">
                 <div *ngIf="registerForm.get('password')?.errors!=null && registerForm.get('password')?.touched"
                     class="alert alert-danger mt-2 fw-bolder">
                     <p *ngIf="registerForm.get('password')?.errors?.required">Password is required</p>

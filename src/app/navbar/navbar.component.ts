@@ -1,6 +1,8 @@
 import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 declare var $: any;
 @Component({
@@ -9,9 +11,10 @@ declare var $: any;
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  token: object = {};
   isLogin: boolean = false;
-  term: any;
-  constructor(private _AuthService: AuthService, private _Router: Router) { }
+  terms: any;
+  constructor(private _AuthService: AuthService, private _Router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     let secOffcet = $(".navbar").offset().top;
@@ -49,18 +52,27 @@ export class NavbarComponent implements OnInit {
   }
 
   logOut() {
-    this._AuthService.logOut();
-  }
-
-  search() {
-    this._Router.navigate([`/${this.term.toLowerCase()}`]);
-    this.term = "";
-  }
-
-  searchEnter(e: any){
-    if (e.key == "Enter") {
-      this._Router.navigate([`/${this.term.toLowerCase()}`]);
-      this.term = "";
+    this.token = {
+      "token": localStorage.getItem("usertoken")
     }
+    this._AuthService.logOut(this.token).subscribe((response) => {
+      localStorage.removeItem("userToken");
+      this._Router.navigate(["/login"]);
+    })
+  }
+
+  searchForm: FormGroup = new FormGroup({
+    "term": new FormControl(null, [Validators.pattern(/^((?!(<|>)).)+$/)])
+  })
+
+  search(searchForm:FormGroup){
+    if(searchForm.valid){
+      this.terms = searchForm.controls.term.value;
+      this._Router.navigate([`/${this.terms.toLowerCase()}`]);
+    }
+    else{
+      this.toastr.error(`Error invalid input(<>)!`, "", { positionClass: 'toast-bottom-right', timeOut: 5000 });
+    }
+    
   }
 }

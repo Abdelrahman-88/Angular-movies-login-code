@@ -25,20 +25,18 @@
                         routerLink="people">People</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLinkActive="active" class="nav-link m-1 ps-2" *ngIf="this.isLogin" routerLink="about">About
-                        Us</a>
+                    <a routerLinkActive="active" class="nav-link m-1 ps-2" *ngIf="this.isLogin" routerLink="about">About</a>
                 </li>
                 <li class="nav-item">
                     <a routerLinkActive="active" class="nav-link m-1 ps-2" *ngIf="this.isLogin"
                         routerLink="contacts">Contacts</a>
                 </li>
             </ul>
-            <div class="d-flex m-2">
-                <input (keyup)="searchEnter($event)" [(ngModel)]="term"
-                    class="form-control me-2 bg-transparent search text-white fw-bolder" type="search"
+            <form [formGroup]="searchForm" (ngSubmit)="search(searchForm)" class="d-flex m-2">
+                <input formControlName="term" class="form-control me-2 bg-transparent search text-white fw-bolder"
                     placeholder="Search" aria-label="Search">
-                <button (click)="search()" class="btn btn-outline-success" type="submit">Search</button>
-            </div>
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
             <div class="d-flex">
                 <div class="d-flex me-3">
                     <a class="m-2" aria-current="page" href="#"><i class="fab fa-twitter"></i></a>
@@ -64,7 +62,7 @@
                         routerLink="login">Login</a>
                     <a routerLinkActive="active" *ngIf="!this.isLogin" class="nav-link mx-1"
                         routerLink="register">Register</a>
-                    <a (click)="logOut()" *ngIf="this.isLogin" class="nav-link mx-1" routerLink="#">Logout</a>
+                    <a (click)="logOut()" *ngIf="this.isLogin" class="nav-link mx-1" type="button">Logout</a>
                 </div>
             </div>
 
