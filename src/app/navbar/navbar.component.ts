@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,7 @@ export class NavbarComponent implements OnInit {
   token: object = {};
   isLogin: boolean = false;
   terms: any;
-  constructor(private _AuthService: AuthService, private _Router: Router, private toastr: ToastrService) { }
+  constructor(private _AuthService: AuthService, private _Router: Router, private toastr: ToastrService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     
@@ -28,12 +29,14 @@ export class NavbarComponent implements OnInit {
   }
 
   logOut() {
+    this.spinner.show();
     this.token = {
       "token": localStorage.getItem("usertoken")
     }
     this._AuthService.logOut(this.token).subscribe((response) => {
       this._Router.navigate(["/login"]);
       localStorage.removeItem("userToken");
+      this.spinner.hide();
     })
   }
 
