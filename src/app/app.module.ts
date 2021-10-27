@@ -25,6 +25,7 @@ import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     PeopleComponent,
     FooterComponent,
     SearchPipe,
+  
     
   ],
   imports: [

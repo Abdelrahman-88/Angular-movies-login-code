@@ -1,5 +1,5 @@
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-clip-rotate-multiple" [fullScreen] = "true"></ngx-spinner>
-<div class="container pt-5">
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#0d6efd" type = "ball-clip-rotate-multiple" [fullScreen] = "true"></ngx-spinner>
+<div class="container py-5">
     <div class="w-75 m-auto pt-5">
         <form [formGroup]="searchForm" class="form-floating my-3">
             <input (keyup)="search(searchForm)" formControlName="term" type="text" class="form-control bg-transparent text-primary border-primary" id="floatingInput" placeholder="Search">
@@ -20,7 +20,7 @@
                 <a [routerLink]="['/moviedetails',people.id,people.media_type]"><img class="img-fluid"
                         [src]="imgPrefx+people.poster_path" [alt]="people.title"></a>
                 <h2 class="h6 my-3">{{people.name?people.name:people.title}}</h2>
-                <div class="vote text-white fw-bolder position-absolute top-0 end-0 p-2">
+                <div class="vote text-primary fw-bolder position-absolute top-0 end-0 p-2">
                     {{people.vote_average}}
                 </div>
             </div>

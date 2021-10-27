@@ -33,9 +33,9 @@
                 </li>
             </ul>
             <form [formGroup]="searchForm" (ngSubmit)="search(searchForm)" class="d-flex m-2">
-                <input formControlName="term" class="form-control me-2 bg-transparent search text-white fw-bolder"
+                <input formControlName="term" class="form-control border-primary me-2 bg-transparent search text-primary"
                     placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <button class="btn btn-outline-primary" type="submit">Search</button>
             </form>
             <div class="d-flex">
                 <div class="d-flex me-3">

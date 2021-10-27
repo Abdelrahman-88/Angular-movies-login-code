@@ -8,7 +8,7 @@
                 <ng-template carouselSlide [id]="movie.id">
                     <a [routerLink]="['/moviedetails',movie.id,movie.media_type]"><img class="img-fluid"
                         [src]="imgPrefx+movie.poster_path" [alt]="movie.title"></a>
-                        <div class="vote text-white fw-bolder position-absolute top-0 end-0 p-2">
+                        <div class="vote text-primary fw-bolder position-absolute top-0 end-0 p-2">
                             {{movie.vote_average}}
                         </div>
                 </ng-template>
