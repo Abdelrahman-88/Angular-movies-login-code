@@ -10,6 +10,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./people.component.css']
 })
 export class PeopleComponent implements OnInit {
+  totalPages: number = 1;
+  visablePages: any[] = [];
+  currentPage: number = 1;
   terms:string="";
   trendingPeople:any[]=[];
   imgPrefx:string = "https://image.tmdb.org/t/p/w500";
@@ -34,14 +37,87 @@ export class PeopleComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinner.show();
-    this._MoviesService.getTrending("people").subscribe((response)=>{
+    this.getPeople(this.currentPage);
+  }
+
+  
+  getPeople(page: number) {
+    this.currentPage = page;
+    this.spinner.show();
+    this._MoviesService.getTrending("people", page).subscribe((response) => {
       this.trendingPeople = response.results;
+      this.totalPages = response.total_pages;
+      this.setPages();
       this.spinner.hide();
     },
-    (error:any)=>{
-      this.spinner.hide();
-    }
-    );
+      (error: any) => {
+        this.spinner.hide();
+      })
+
   }
+
+  setPages() {
+    if (this.currentPage == 1) {
+      if (this.totalPages == 1) {
+        this.visablePages = [1];
+      }
+      else if (this.totalPages == 2) {
+        this.visablePages = [1, 2];
+      }
+      else {
+        this.visablePages = [1, 2, 3];
+      }
+    }
+  }
+
+  changePage(term: any) {
+    if (term == "next" && this.visablePages.includes(this.totalPages) == false) {
+      this.visablePages.forEach((part, index) => { this.visablePages[index]++ });
+      this.getPeople(this.currentPage + 1);
+    }
+    else if (term == "prev" && this.visablePages[0] > 1) {
+      this.visablePages.forEach((part, index) => { this.visablePages[index]-- })
+      this.getPeople(this.currentPage - 1);
+    }
+    else if (term == "prev" && this.currentPage > 1) {
+      this.getPeople(this.currentPage - 1);
+    }
+    else if (term == "next" && this.currentPage < this.totalPages) {
+      this.getPeople(this.currentPage + 1);
+    }
+  }
+
+  getCurrentPage(page: number) {
+    this.currentPage = page;
+    this.getPeople(page);
+  }
+
+  getLastPage(term: string) {
+    if (term == "last") {
+      if (this.totalPages == 1) {
+        this.visablePages = [1];
+      }
+      else if (this.totalPages == 2) {
+        this.visablePages = [1, 2];
+      }
+      else {
+        this.visablePages = [this.totalPages - 2, this.totalPages - 1, this.totalPages];
+      }
+      this.getPeople(this.totalPages);
+    }
+    else if (term == "first") {
+      if (this.totalPages == 1) {
+        this.visablePages = [1];
+      }
+      else if (this.totalPages == 2) {
+        this.visablePages = [1, 2];
+      }
+      else {
+        this.visablePages = [1, 2, 3];
+      }
+      this.getPeople(1);
+    }
+  }
+
 
 }

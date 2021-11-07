@@ -17,6 +17,8 @@ export class HeaderComponent implements OnInit {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: false,
+    autoplay:true,
+    autoplayHoverPause:true,
     dots: false,
     navSpeed: 700,
     navText: ['', ''],

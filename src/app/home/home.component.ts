@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class HomeComponent implements OnInit {
   terms: string="";
+  page: number = 1;
   trendingMovies: any[] = [];
   trendingTv: any[] = [];
   trendingPeople: any[] = [];
@@ -33,21 +34,21 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinner.show();
-    this._MoviesService.getTrending("movie").subscribe((response) => {
+    this._MoviesService.getTrending("movie",this.page).subscribe((response) => {
       this.trendingMovies = response.results.splice(0, 10);
       this.spinner.hide();
     },
     (error:any)=>{
       this.spinner.hide();
     })
-    this._MoviesService.getTrending("tv").subscribe((response) => {
+    this._MoviesService.getTrending("tv",this.page).subscribe((response) => {
       this.trendingTv = response.results.splice(0, 10);
       this.spinner.hide();
     },
     (error:any)=>{
       this.spinner.hide();
     })
-    this._MoviesService.getTrending("people").subscribe((response) => {
+    this._MoviesService.getTrending("people",this.page).subscribe((response) => {
       this.trendingPeople = response.results.splice(0, 10);
       this.spinner.hide();
     },
