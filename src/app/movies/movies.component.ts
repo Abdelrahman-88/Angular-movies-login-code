@@ -34,6 +34,9 @@ export class MoviesComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinner.show();
+    if(sessionStorage.getItem("currentPage")!=null){
+      this.currentPage=Number(sessionStorage.getItem("currentPage"));
+    }
     this.getMovies(this.currentPage);
   }
 
@@ -63,6 +66,12 @@ export class MoviesComponent implements OnInit {
       else {
         this.visablePages = [1, 2, 3];
       }
+    }else if(this.currentPage > 1 && this.currentPage <= this.totalPages-2){
+      this.visablePages = [this.currentPage, this.currentPage+1, this.currentPage+2];
+    }else if(this.currentPage > 1 && this.currentPage == this.totalPages-1){
+      this.visablePages = [this.currentPage-1, this.currentPage, this.currentPage+1];
+    }else if(this.currentPage > 1 && this.currentPage == this.totalPages){
+      this.visablePages = [this.currentPage-2, this.currentPage-1, this.currentPage];
     }
   }
 
@@ -81,11 +90,13 @@ export class MoviesComponent implements OnInit {
     else if (term == "next" && this.currentPage < this.totalPages) {
       this.getMovies(this.currentPage + 1);
     }
+    sessionStorage.setItem("currentPage",JSON.stringify(this.currentPage));
   }
 
   getCurrentPage(page: number) {
     this.currentPage = page;
     this.getMovies(page);
+    sessionStorage.setItem("currentPage",JSON.stringify(this.currentPage));
   }
 
   getLastPage(term: string) {
@@ -113,6 +124,7 @@ export class MoviesComponent implements OnInit {
       }
       this.getMovies(1);
     }
+    sessionStorage.setItem("currentPage",JSON.stringify(this.currentPage));
   }
 
 }

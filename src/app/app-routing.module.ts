@@ -14,14 +14,14 @@ import { PeopleComponent } from './people/people.component';
 
 const routes: Routes = [
   {path:"" , redirectTo:"home" , pathMatch:"full"},
-  {path:"home" , canActivate:[AuthGuard] , component:HomeComponent},
-  {path:"movies" , canActivate:[AuthGuard] , component:MoviesComponent},
-  {path:"tv" , canActivate:[AuthGuard] , component:TvComponent},
-  {path:"people" , canActivate:[AuthGuard] , component:PeopleComponent},
-  {path:"about" , canActivate:[AuthGuard] , component:AboutComponent},
-  {path:"contacts" , canActivate:[AuthGuard] , component:ContactsComponent},
-  {path:"moviedetails/:id/:term" , canActivate:[AuthGuard] , component:MoviedetailsComponent},
-  {path: 'profile',
+  {path:"home" ,  component:HomeComponent},
+  {path:"movies" ,  component:MoviesComponent},
+  {path:"tv" ,  component:TvComponent},
+  {path:"people" ,  component:PeopleComponent},
+  {path:"about" ,  component:AboutComponent},
+  {path:"contacts" ,  component:ContactsComponent},
+  {path:"moviedetails/:id/:term" ,  component:MoviedetailsComponent},
+  {path: 'profile',canActivate:[AuthGuard] ,
   loadChildren: () => import('./profile/profile.module').then((m) => m.ProfileModule)
 },
 

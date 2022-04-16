@@ -37,8 +37,10 @@ export class TvComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinner.show();
+    if(sessionStorage.getItem("currentPageTV")!=null){
+      this.currentPage=Number(sessionStorage.getItem("currentPageTV"));
+    }
     this.getTv(this.currentPage);
-    
   }
 
   getTv(page: number) {
@@ -67,6 +69,12 @@ export class TvComponent implements OnInit {
       else {
         this.visablePages = [1, 2, 3];
       }
+    }else if(this.currentPage > 1 && this.currentPage <= this.totalPages-2){
+      this.visablePages = [this.currentPage, this.currentPage+1, this.currentPage+2];
+    }else if(this.currentPage > 1 && this.currentPage == this.totalPages-1){
+      this.visablePages = [this.currentPage-1, this.currentPage, this.currentPage+1];
+    }else if(this.currentPage > 1 && this.currentPage == this.totalPages){
+      this.visablePages = [this.currentPage-2, this.currentPage-1, this.currentPage];
     }
   }
 
@@ -85,11 +93,13 @@ export class TvComponent implements OnInit {
     else if (term == "next" && this.currentPage < this.totalPages) {
       this.getTv(this.currentPage + 1);
     }
+    sessionStorage.setItem("currentPageTV",JSON.stringify(this.currentPage));
   }
 
   getCurrentPage(page: number) {
     this.currentPage = page;
     this.getTv(page);
+    sessionStorage.setItem("currentPageTV",JSON.stringify(this.currentPage));
   }
 
   getLastPage(term: string) {
@@ -117,6 +127,7 @@ export class TvComponent implements OnInit {
       }
       this.getTv(1);
     }
+    sessionStorage.setItem("currentPageTV",JSON.stringify(this.currentPage));
   }
 
 }

@@ -37,6 +37,9 @@ export class PeopleComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinner.show();
+    if(sessionStorage.getItem("currentPagePeople")!=null){
+      this.currentPage=Number(sessionStorage.getItem("currentPagePeople"));
+    }
     this.getPeople(this.currentPage);
   }
 
@@ -67,6 +70,12 @@ export class PeopleComponent implements OnInit {
       else {
         this.visablePages = [1, 2, 3];
       }
+    }else if(this.currentPage > 1 && this.currentPage <= this.totalPages-2){
+      this.visablePages = [this.currentPage, this.currentPage+1, this.currentPage+2];
+    }else if(this.currentPage > 1 && this.currentPage == this.totalPages-1){
+      this.visablePages = [this.currentPage-1, this.currentPage, this.currentPage+1];
+    }else if(this.currentPage > 1 && this.currentPage == this.totalPages){
+      this.visablePages = [this.currentPage-2, this.currentPage-1, this.currentPage];
     }
   }
 
@@ -85,11 +94,13 @@ export class PeopleComponent implements OnInit {
     else if (term == "next" && this.currentPage < this.totalPages) {
       this.getPeople(this.currentPage + 1);
     }
+    sessionStorage.setItem("currentPagePeople",JSON.stringify(this.currentPage));
   }
 
   getCurrentPage(page: number) {
     this.currentPage = page;
     this.getPeople(page);
+    sessionStorage.setItem("currentPagePeople",JSON.stringify(this.currentPage));
   }
 
   getLastPage(term: string) {
@@ -117,6 +128,7 @@ export class PeopleComponent implements OnInit {
       }
       this.getPeople(1);
     }
+    sessionStorage.setItem("currentPagePeople",JSON.stringify(this.currentPage));
   }
 
 
